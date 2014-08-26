@@ -1,6 +1,7 @@
 #!/bin/sh
 
-ETCDCTL_WATCH=/services/crond/reload
+ETCDCTL_WATCH=/services/gitupdater/reload
+
 if [ ! -z "$1" ] ; then
     ETCDCTL_WATCH=$1
 fi
