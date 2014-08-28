@@ -11,14 +11,18 @@ if [ -z "${LOCALPATH}" ] ; then
 fi
 
 if [ ! -z "${GITPATH}" ] ; then
-    rm -rf ${LOCALPATH}/*
-    echo "Cloning ${GITPATH} repo to ${LOCALPATH}"
-    RETVAL=-1
-    while [ ${RETVAL} -ne 0 ]; do
-	git clone ${GITPATH} ${LOCALPATH}
-	let RETVAL=$?
-	sleep 5
-    done
+    if [ -d ${LOCALPATH}/.git ] ; then
+    	echo "Cloning ${GITPATH} repo to ${LOCALPATH}"
+    	RETVAL=-1
+    	while [ ${RETVAL} -ne 0 ]; do
+		git clone ${GITPATH} ${LOCALPATH}
+		let RETVAL=$?
+		sleep 5
+    	done
+    else
+    	cd ${LOCALPATH}
+    	git pull
+    fi
 else
     echo "Error: can't find GITPATH, exiting."
     exit 1
