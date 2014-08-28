@@ -11,7 +11,7 @@ if [ -z "${LOCALPATH}" ] ; then
 fi
 
 if [ ! -z "${GITPATH}" ] ; then
-    if [ -d ${LOCALPATH}/.git ] ; then
+    if [ ! -d ${LOCALPATH}/.git ] ; then
     	echo "Cloning ${GITPATH} repo to ${LOCALPATH}"
     	RETVAL=-1
     	while [ ${RETVAL} -ne 0 ]; do
