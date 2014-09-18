@@ -23,6 +23,8 @@ if [ ! -z "${GITPATH}" ] ; then
     	cd ${LOCALPATH}
     	git pull
     fi
+    # Send signal to all related services
+    etcdctl set ${ETCD_NOTIFY} updated
 else
     echo "Error: can't find GITPATH, exiting."
     exit 1
