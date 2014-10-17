@@ -8,8 +8,8 @@ Container for pulling git repo in cycle and notify etcd about changes.
 * `GITPATH` path to git repository.
 * `LOCALPATH` path to folder where git repository would be cloned. Optional, default is `/data`.
 * `ETCDCTL_PEERS` parameter to tell `etcd` peer address to work with.
-* `ETCDCTL_WATCH` path inside etcd to watch update signal. Optional, refer to [`varsy/crond`](https://registry.hub.docker.com/u/varsy/crond/) Default: `/services/gitupdater/reload` 
-* `ETCDCTL_NOTIFY` path inside etcd to send notification signal if git repo have changed. Optional, default `/services/gitupdater/notify`.
+* `ETCDCTL_WATCH` path inside etcd to watch update signal. Optional, default key: `/services/gitupdater/reload` Default value: `reload`.
+* `ETCDCTL_NOTIFY` path inside etcd to send notification signal if git repo have changed. Optional, default key: `/services/gitupdater/notify`. Default value is `updated`.
 
 ### SSH private keys
 You may need to access private GIT repository with confd config files. In such case you have put ssh config file and private key to folder `/sshconfig`.

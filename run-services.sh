@@ -2,8 +2,8 @@
 
 trap "killall reloader.sh; killall etcdctl; killall tail; exit 0" SIGINT SIGTERM SIGHUP
 
-if [ -z "${ETCD_NOTIFY}" ] ; then
-     ETCD_NOTIFY=/services/gitupdater/notify
+if [ -z "${ETCDCTL_NOTIFY}" ] ; then
+     ETCDCTL_NOTIFY=/services/gitupdater/notify
 fi
 
 if [ -z "${LOCALPATH}" ] ; then
@@ -24,13 +24,13 @@ if [ ! -z "${GITPATH}" ] ; then
     	git pull
     fi
     # Send signal to all related services
-    etcdctl set ${ETCD_NOTIFY} updated
+    etcdctl set ${ETCDCTL_NOTIFY} updated
 else
     echo "Error: can't find GITPATH, exiting."
     exit 1
 fi
 
-set | grep -E "ETCDCTL_PEERS|LOCALPATH|GITPATH|ETCD_NOTIFY" > /etc/sysconfig/vars
+set | grep -E "ETCDCTL_PEERS|LOCALPATH|GITPATH|ETCDCTL_NOTIFY" > /etc/sysconfig/vars
 
 
 
